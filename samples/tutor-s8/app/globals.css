@@ -1,0 +1,90 @@
+:root {
+  --bg: #f4f6f3;
+  --card: #ffffff;
+  --line: #dfe5df;
+  --text: #1b1f1d;
+  --muted: #5d665f;
+  --main: #1f6b4f;
+  --main-dark: #1f4d3a;
+  --tint: #e6f1eb;
+  --warn-bg: #fff8e6;
+  --warn-line: #f0d58c;
+  --danger: #b3261e;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+  letter-spacing: -0.02em;
+  line-height: 1.6;
+  word-break: keep-all; /* 한글 낱말 중간에서 줄이 바뀌지 않게 */
+  background: var(--bg);
+  color: var(--text);
+}
+h1 { font-size: 20px; margin: 0; }
+p { margin: 0; }
+button, input, textarea { font: inherit; letter-spacing: inherit; }
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 16px;
+  background: var(--main);
+  color: #fff;
+  cursor: pointer;
+}
+button:disabled { opacity: 0.5; cursor: default; }
+button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible { outline: 3px solid #9cc9b4; outline-offset: 2px; }
+.error { color: var(--danger); font-size: 14px; }
+.unit { color: var(--muted); font-size: 14px; }
+
+/* 첫 화면: 수업 코드 입력 */
+.gate { min-height: 100dvh; display: grid; place-items: center; padding: 24px 16px; }
+.gate-card {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 28px 24px;
+}
+.gate-card h1 { font-size: 24px; color: var(--main-dark); }
+.gate-card label { font-size: 14px; color: var(--muted); margin-top: 8px; }
+.gate-card input { padding: 12px 14px; border: 1px solid #c4cdc6; border-radius: 10px; }
+.gate-card .fine { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; margin-top: 4px; }
+
+/* 채팅 화면 */
+.chat { max-width: 760px; height: 100dvh; margin: 0 auto; display: flex; flex-direction: column; padding: 12px 16px 0; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 4px 0 10px; }
+.top h1 { color: var(--main-dark); }
+.ghost { background: var(--tint); color: var(--main-dark); padding: 8px 12px; font-size: 14px; white-space: nowrap; }
+.goals { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; font-size: 14px; }
+.goals summary { cursor: pointer; font-weight: 600; color: var(--main-dark); }
+.goals ul { margin: 8px 0 2px; padding-left: 18px; color: #333a36; }
+.notice { background: var(--warn-bg); border: 1px solid var(--warn-line); border-radius: 12px; padding: 8px 12px; font-size: 13px; margin-top: 8px; }
+
+.log { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding: 14px 2px; }
+.empty { margin: auto 0; text-align: center; color: var(--muted); padding: 12px 0; }
+.starters { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; align-items: center; }
+.chip { background: var(--card); color: var(--main-dark); border: 1px solid #bcd3c7; border-radius: 999px; padding: 8px 14px; font-size: 14px; max-width: 100%; }
+.bubble { max-width: 86%; padding: 10px 14px; border-radius: 16px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.bubble .who { display: block; font-size: 12px; color: var(--muted); margin-bottom: 2px; }
+.bubble.assistant { align-self: flex-start; background: var(--card); border: 1px solid var(--line); border-top-left-radius: 4px; }
+.bubble.user { align-self: flex-end; background: var(--tint); border: 1px solid #c9dfd3; border-top-right-radius: 4px; }
+.bubble.thinking { color: var(--muted); }
+
+.composer { border-top: 1px solid var(--line); padding: 10px 0 12px; display: flex; flex-direction: column; gap: 8px; background: var(--bg); }
+.composer textarea { width: 100%; resize: none; padding: 10px 12px; border: 1px solid #c4cdc6; border-radius: 12px; background: var(--card); color: inherit; }
+.send-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.count { font-size: 13px; color: var(--muted); }
+.help { font-size: 12px; color: var(--muted); text-align: center; }
+
+@media (max-width: 480px) {
+  .chat { padding: 8px 12px 0; }
+  .bubble { max-width: 92%; }
+  h1 { font-size: 18px; }
+}

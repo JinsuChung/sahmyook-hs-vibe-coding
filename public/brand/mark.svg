@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="바이브 코딩">
+  <rect width="64" height="64" rx="14" fill="#002855"/>
+  <path d="M14 22.5 32 14l18 8.5L32 31z" fill="#7fd3ff"/>
+  <path d="M21 29.5v9.2c0 3 4.9 6.3 11 6.3s11-3.3 11-6.3v-9.2L32 34.6z" fill="#ffffff"/>
+  <path d="M50 22.5v13" stroke="#7fd3ff" stroke-width="2.6" stroke-linecap="round"/>
+  <circle cx="50" cy="38.5" r="2.6" fill="#7fd3ff"/>
+  <path d="m27 50 3 3-3 3M34 56h5" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".9"/>
+</svg>
