@@ -14,10 +14,12 @@ export const checklistsS1: Record<string, CheckList> = {
       {
         id: 'claude-plan',
         label: 'Claude 유료 플랜(Pro 이상) 계정',
-        hint: '무료 플랜에는 Claude Code가 들어 있지 않습니다. 학교나 연수 기관에서 계정을 마련해 주는지 담당자에게 확인하세요.',
-        href: 'https://claude.ai',
+        hint: '무료 플랜에는 Claude Code가 들어 있지 않습니다. 가입과 결제 순서는 연수 전 준비 안내를 따라 하세요.',
+        href: '/start/signup#claude-pro',
       },
-      { id: 'desktop-app', label: 'Claude 데스크톱 앱 설치하고 로그인하기', hint: '사이드바 위쪽에 Code 탭이 보이면 준비 끝', href: '/start/setup#claude-code' },
+      { id: 'desktop-app', label: 'Claude 데스크톱 앱 설치하고 로그인하기', hint: '사이드바 위쪽에 Code 탭이 보이면 준비 끝', href: '/start/signup#claude-desktop' },
+      { id: 'github', label: 'GitHub 가입하기 (무료)', hint: '사용자 이름은 내 저장소 주소에 들어가고 다른 사람에게 보입니다.', href: '/start/signup#github' },
+      { id: 'vercel', label: 'Vercel 가입하기 (GitHub로, Hobby)', hint: 'Continue with GitHub로 가입해야 3회차 배포가 매끄럽습니다.', href: '/start/signup#vercel' },
       {
         id: 'sample-1',
         label: '1회차 실습 자료 내려받아 압축 풀기',

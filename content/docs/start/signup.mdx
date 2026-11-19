@@ -1,0 +1,197 @@
+---
+title: "연수 전 준비: 가입과 설치"
+description: "연수 전에 Claude 가입과 유료 플랜 결제, Claude 데스크톱 앱 설치, GitHub·Vercel 가입까지 마쳐 오세요. 30분이면 충분합니다."
+---
+
+연수 시간을 실습에 온전히 쓰려면 가입과 설치를 미리 끝내 두어야 합니다. 아래 순서대로 하면 30분 안팎이면 끝납니다. 화면 위쪽의 **Windows / macOS** 토글을 바꾸면 설치 설명이 운영체제에 맞게 바뀝니다.
+
+## 해 올 일 한눈에 보기
+
+| 순서 | 할 일 | 걸리는 시간 | 꼭 해 와야 하나요 |
+| --- | --- | --- | --- |
+| 1 | [Claude 가입](#claude-signup) | 5분 | 예 |
+| 2 | [Claude 유료 플랜(Pro) 결제](#claude-pro) | 5분 | 예. 무료 플랜에는 실습 도구가 없습니다 |
+| 3 | [Claude 데스크톱 앱 설치와 확인](#claude-desktop) | 10분 | 예 |
+| 4 | [GitHub 가입](#github) | 5분 | 예 |
+| 5 | [Vercel 가입 (GitHub로)](#vercel) | 3분 | 예 |
+
+<Callout type="info" title="미리 챙길 것 세 가지">
+
+- **휴대폰**: Claude 가입 때 문자 인증을 받습니다. 인터넷 전화 번호나 유선 전화는 쓸 수 없습니다.
+- **결제 카드**: Claude 요금은 달러로 결제됩니다. 해외 결제가 되는 카드인지 확인하세요.
+- **노트북이나 PC**: 학교 업무용 PC에 설치가 막혀 있으면 [설치 권한이 막혀 있을 때](/start/setup#school-pc)를 보고 미리 전산 담당 선생님과 상의하세요. 개인 노트북을 가져오셔도 됩니다.
+
+</Callout>
+
+가입, 결제, 비밀번호 입력은 모두 선생님이 직접 합니다. 강사나 AI에게 비밀번호와 인증 코드를 알려 주지 마세요. 세 서비스를 **같은 이메일**로 가입하면 나중에 관리하기 편합니다.
+
+## 1. Claude 가입 [#claude-signup]
+
+<Steps>
+<FdStep>
+브라우저에서 [claude.ai](https://claude.ai)에 들어갑니다.
+</FdStep>
+<FdStep>
+가입 방법을 고릅니다.
+
+- <b>Continue with Google</b>: Google 계정으로 바로 가입합니다. 가장 간단합니다.
+- <b>Continue with email</b>: 이메일 주소를 넣으면 로그인 링크가 담긴 메일이 옵니다. 메일의 링크를 누르면 로그인됩니다. Claude는 따로 비밀번호를 만들지 않고, 로그인할 때마다 이 방식으로 들어갑니다.
+</FdStep>
+<FdStep>
+휴대폰 번호를 넣고 문자로 받은 인증 코드를 입력합니다. 새로 가입하는 사람은 모두 거쳐야 하는 단계입니다.
+</FdStep>
+<FdStep>
+이름 등 몇 가지를 입력하고 이용 약관에 동의하면 대화 화면이 나옵니다. Claude는 만 18세 이상만 가입할 수 있습니다.
+</FdStep>
+</Steps>
+
+<Callout type="info" title="로그인 메일을 휴대폰에서 열었다면">
+  컴퓨터에서 가입하다가 로그인 메일을 휴대폰에서 열면, 휴대폰 화면에 인증 코드가 나옵니다. 그 코드를 컴퓨터 화면에 입력하면 됩니다.
+</Callout>
+
+## 2. Claude 유료 플랜(Pro) 결제 [#claude-pro]
+
+실습에 쓰는 Claude Code는 유료 플랜에만 들어 있습니다. 개인이 쓰기에는 **Pro**면 충분합니다.
+
+- Pro 요금: <Fact k="claude.pro.price" />
+- 쓸 수 있는 플랜: <Fact k="claude.plan" />
+
+<Steps>
+<FdStep>
+claude.ai 왼쪽 아래의 이름(또는 이니셜)을 누르고 **Settings**로 들어갑니다.
+</FdStep>
+<FdStep>
+**Billing**에서 <b>Upgrade plan</b>을 누르고 <b>Get Pro plan</b>을 고릅니다. 화면에 업그레이드 버튼이 따로 보이면 그것을 눌러도 됩니다.
+</FdStep>
+<FdStep>
+월 결제와 1년 결제 가운데 하나를 고릅니다. 연수 동안만 써 보실 거라면 **월 결제**를 권합니다.
+</FdStep>
+<FdStep>
+카드 정보를 입력하고 <b>Subscribe</b>를 누릅니다.
+</FdStep>
+</Steps>
+
+<Callout type="warn" title="해지와 환불을 미리 알아 두세요">
+
+- 구독은 매달(또는 매년) **자동으로 갱신**됩니다.
+- 해지는 **Settings → Billing → Cancel**에서 언제든 할 수 있습니다. 해지해도 이미 낸 기간이 끝날 때까지는 계속 쓸 수 있습니다. 다음 결제일 **24시간 전까지** 해지해야 다음 요금이 나가지 않습니다.
+- 낸 요금은 원칙적으로 환불되지 않습니다. 자세한 기준은 [공식 환불 안내](https://support.claude.com/en/articles/12386328)를 보세요.
+- 한국 교사에게 적용되는 개인 할인은 공식 안내에 없습니다. 학교 예산으로 결제할 수 있는지는 학교 행정실과 먼저 상의하세요.
+
+</Callout>
+
+## 3. Claude 데스크톱 앱 설치와 확인 [#claude-desktop]
+
+수업은 Claude 데스크톱 앱의 **Code** 탭으로 진행합니다. 검은 명령 창(터미널)을 쓰지 않아도 됩니다.
+
+- 설치되는 컴퓨터: <Fact k="claude.desktop.os" />
+
+<Steps>
+<FdStep>
+[claude.com/download](https://claude.com/download)에서 운영체제에 맞는 설치 파일을 내려받습니다.
+
+<OSBlock
+  win={<p>일반 Windows PC는 기본 설치 파일을 받으면 됩니다. Surface Pro X처럼 ARM 프로세서를 쓰는 PC라면 ARM64용 파일을 받으세요. 잘 모르겠다면 기본 파일이면 됩니다.</p>}
+  mac={<p>macOS용 파일 하나가 Intel Mac과 Apple Silicon(M1 이후) Mac에서 모두 동작합니다.</p>}
+/>
+</FdStep>
+<FdStep>
+내려받은 파일을 열고 화면 안내대로 설치합니다.
+
+<OSBlock
+  win={<p>설치가 끝나면 시작 메뉴에서 <b>Claude</b>를 찾아 엽니다. 관리자 암호를 묻거나 설치가 차단되면 그 PC는 설치가 제한된 상태입니다. <a href="/start/setup#school-pc">학교 PC 특수 상황</a>을 보세요.</p>}
+  mac={<p>설치가 끝나면 응용 프로그램 폴더에서 <b>Claude</b>를 찾아 엽니다. 처음 열 때 인터넷에서 받은 앱이라는 확인 창이 나오면 <b>열기</b>를 누르세요.</p>}
+/>
+</FdStep>
+<FdStep>
+앱에서 1번에서 만든 Claude 계정으로 로그인합니다.
+</FdStep>
+<FdStep>
+사이드바 위쪽의 **Code** 탭을 누릅니다. 탭이 아이콘으로만 보이면 마우스를 올려 이름을 확인하세요.
+
+- 업그레이드 안내가 나오면 아직 유료 플랜이 아닌 것입니다. 2번을 먼저 마치세요.
+- 온라인 로그인 안내가 나오면 로그인을 마친 뒤 앱을 껐다가 다시 여세요.
+</FdStep>
+<FdStep>
+입력창 아래 줄의 첫 번째 칸에서 **Local** 묶음의 맨 위 항목을 고르고, 옆 칸의 <b>Open folder…</b>로 아무 폴더나 하나 고릅니다. 연습용으로 바탕화면에 빈 폴더를 하나 만들어 고르면 안전합니다.
+</FdStep>
+<FdStep>
+입력창에 `안녕하세요. 지금 이 폴더에 어떤 파일이 있는지 알려 주세요`라고 써 보세요. 답이 오면 준비가 끝났습니다.
+</FdStep>
+</Steps>
+
+<Callout type="warn" title="학생 정보가 든 폴더는 열지 마세요">
+  Claude Code는 고른 폴더 안의 파일을 읽습니다. 확인할 때는 빈 폴더나 개인 정보가 없는 폴더를 고르세요. 실습은 자료실의 가상 데이터 폴더로 합니다.
+</Callout>
+
+데스크톱 앱 안에 Claude Code가 들어 있어서 Node.js나 터미널용 Claude Code를 따로 설치할 필요는 없습니다. 화면이 이 설명과 다르면 [공식 데스크톱 앱 시작하기](https://code.claude.com/docs/en/desktop-quickstart)를 확인하세요.
+
+## 4. GitHub 가입 [#github]
+
+GitHub는 만든 코드를 올려 두고 이력을 관리하는 곳입니다. 3회차부터 씁니다. 무료(Free) 계정이면 충분합니다.
+
+<Steps>
+<FdStep>
+[github.com/signup](https://github.com/signup)에 들어갑니다.
+</FdStep>
+<FdStep>
+이메일, 비밀번호, 사용자 이름(username)을 입력합니다.
+
+- **비밀번호**: 숫자와 영어 소문자를 섞으면 8자 이상, 섞지 않으면 15자 이상이어야 합니다.
+- **사용자 이름**: 내 저장소 주소(`github.com/사용자이름`)에 들어가고 다른 사람에게 보입니다. 실명이 드러나는 것이 싫다면 실명이 아닌 이름으로 정하세요.
+</FdStep>
+<FdStep>
+사람인지 확인하는 퍼즐이 나오면 직접 풉니다.
+</FdStep>
+<FdStep>
+가입한 이메일로 온 메일의 안내(인증 코드 입력이나 확인 링크)를 따라 이메일 인증을 마칩니다.
+</FdStep>
+<FdStep>
+요금제를 묻는 화면이 나오면 무료(Free)를 고릅니다. 관심사 설문은 건너뛰어도 됩니다.
+</FdStep>
+</Steps>
+
+<Callout type="info" title="2단계 인증을 켜 두면 좋습니다">
+  GitHub는 로그인할 때 휴대폰 앱의 코드를 한 번 더 확인하는 2단계 인증을 권합니다. 지금 켜지 않아도 수업에는 지장이 없지만, 나중에 GitHub가 메일로 요청하면 안내에 따라 켜세요.
+</Callout>
+
+## 5. Vercel 가입 (GitHub로) [#vercel]
+
+Vercel은 만든 웹앱을 인터넷 주소로 올려 주는 곳입니다. 3회차부터 씁니다. **GitHub 계정으로 가입**해야 3회차의 배포가 매끄럽게 이어지니, 4번을 먼저 마치세요.
+
+<Steps>
+<FdStep>
+[vercel.com/signup](https://vercel.com/signup)에 들어갑니다.
+</FdStep>
+<FdStep>
+여러 가입 버튼 가운데 <b>Continue with GitHub</b>를 누릅니다.
+</FdStep>
+<FdStep>
+GitHub 화면이 열리고 Vercel에 권한을 줄지 묻습니다. 내 GitHub 계정이 맞는지 확인하고 승인합니다.
+</FdStep>
+<FdStep>
+요금제나 용도를 물으면 **Hobby**(무료, 개인 용도)를 고르고 이름을 입력합니다. 대시보드가 나오면 끝입니다.
+</FdStep>
+</Steps>
+
+- Hobby 요금제: <Fact k="vercel.hobby" />
+- 이용 조건: <Fact k="vercel.hobby.use" />. 연수 실습과 개인 업무 도구는 여기에 해당합니다.
+- 카드는 Pro 같은 유료 요금제로 올릴 때 입력합니다. 가입 중에 카드 입력 화면이 나오면 Hobby를 골랐는지 먼저 확인하세요.
+
+## 다 됐는지 확인하기
+
+연수 당일 아래 다섯 가지가 되면 준비 완료입니다.
+
+| 확인할 것 | 확인하는 법 |
+| --- | --- |
+| Claude 로그인 | claude.ai에 들어가면 대화 화면이 나온다 |
+| 유료 플랜 | claude.ai **Settings → Billing**에 Pro가 보인다 |
+| 데스크톱 앱 | 앱의 **Code** 탭에서 질문하면 답이 온다 |
+| GitHub | github.com에 로그인되어 있고 내 사용자 이름을 안다 |
+| Vercel | vercel.com에 GitHub로 로그인된다 |
+
+<Callout type="info" title="막히면 그대로 오셔도 됩니다">
+  가입이나 설치가 안 된 단계가 있으면 어디서 멈췄는지만 기억해 오세요. 연수 시작 전에 함께 해결합니다. 학교 무선망 때문에 접속이 안 되는 경우는 [설치 가이드의 학교 무선망 항목](/start/setup#school-network)을 보세요.
+</Callout>
+
+Python, Git, Node.js처럼 뒤 회차에 필요한 프로그램은 [설치 가이드](/start/setup)에 회차별로 정리해 두었습니다. 연수 전에 미리 하지 않아도 됩니다.

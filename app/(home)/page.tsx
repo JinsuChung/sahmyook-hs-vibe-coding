@@ -49,6 +49,12 @@ export default function HomePage() {
             </Link>
             <ContinueButton />
             <Link
+              href="/start/signup"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/40 px-5 py-3 font-semibold text-white hover:bg-white/10"
+            >
+              연수 전 가입·설치 안내
+            </Link>
+            <Link
               href="/start"
               className="inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold text-white/90 hover:text-white"
             >

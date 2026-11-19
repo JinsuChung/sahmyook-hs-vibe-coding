@@ -26,6 +26,18 @@ export const facts = {
     checked: '2026-11-16',
     source: 'https://code.claude.com/docs/en/desktop-quickstart',
   },
+  /** Claude 개인 유료 플랜 가격 (달러, 세금 별도) */
+  'claude.pro.price': {
+    value: '월 20달러, 1년 결제 시 월 17달러(200달러 선결제). 세금 별도',
+    checked: '2026-11-19',
+    source: 'https://claude.com/pricing',
+  },
+  /** Claude 데스크톱 앱이 설치되는 운영체제 */
+  'claude.desktop.os': {
+    value: 'Windows 10 이상 또는 macOS 13(Ventura) 이상',
+    checked: '2026-11-19',
+    source: 'https://support.claude.com/en/articles/10065433',
+  },
   /** Claude Code가 도는 운영체제 */
   'claude.os': {
     value: 'Windows 10 (1809 이상) 또는 macOS 13 이상, 메모리 4GB 이상, 인터넷 연결',
@@ -44,13 +56,13 @@ export const facts = {
     source: 'https://vercel.com/docs/plans/hobby',
   },
   /**
-   * Hobby 요금제의 용도 제한. 2026-11-16에 출처 페이지를 다시 열었을 때 이 문구를 찾지 못해
-   * 값과 확인일을 예전 그대로 두었습니다. 다음 점검 때 Vercel 약관에서 다시 확인하세요.
+   * Hobby 요금제의 용도 제한. 2026-11-19에 Vercel 약관에서 원문을 확인했습니다:
+   * "You shall only use the Services under a Hobby plan for your personal or non-commercial use."
    */
   'vercel.hobby.use': {
-    value: '비상업·개인 용도',
-    checked: '2026-10-06',
-    source: 'https://vercel.com/docs/plans/hobby',
+    value: '개인 용도 또는 비상업 용도로만',
+    checked: '2026-11-19',
+    source: 'https://vercel.com/legal/terms',
   },
   'vercel.pro': {
     value: '개발자 1인당 월 20달러',
