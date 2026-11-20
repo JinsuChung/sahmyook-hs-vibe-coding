@@ -1,0 +1,339 @@
+---
+title: "한번에 따라가는 흐름"
+description: "발표 번호 뽑기 하나를 만들어 인터넷에 올리기까지, 필요한 프로그램을 Claude Code에게 시켜 하나씩 설치합니다. 끝나면 개발 환경과 내 링크가 함께 남습니다."
+---
+
+설치는 지루한 숙제가 되기 쉽습니다. 그래서 오늘은 순서를 바꿉니다. **만들다가 필요해지면 그때 Claude Code에게 설치를 시키고, 설치한 것은 그 자리에서 바로 써 봅니다.** 이 페이지를 위에서 아래로 따라가면 됩니다.
+
+끝나면 두 가지가 남습니다.
+
+- **제대로 갖춘 개발 환경**: Git, Python, Node.js, GitHub CLI, Vercel CLI
+- **내 링크 하나**: 교실 TV에 띄울 수 있는 발표 번호 뽑기
+
+<Callout type="info" title="시작하기 전에 되어 있어야 하는 것">
+  Claude 유료 플랜, Claude 데스크톱 앱, GitHub 계정, Vercel 계정입니다. 아직이라면 [연수 전 준비: 가입과 설치](/start/signup)를 먼저 하세요. 화면 위쪽의 **Windows / macOS** 토글을 내 컴퓨터에 맞춰 두면 설명이 운영체제에 맞게 바뀝니다.
+</Callout>
+
+## 오늘 지나갈 길
+
+| 구간 | 설치하는 것 | 설치하자마자 해 보는 것 | 시간 |
+| --- | --- | --- | --- |
+| 0. 출발 | 없음 | 실습 폴더를 만들고 Claude Code로 열기 | 5분 |
+| 1. 진단 | 없음 | 내 컴퓨터 진단서 받기 | 5분 |
+| 2. Git | Git | 첫 세이브 포인트 | 10분 |
+| 3. Python | Python | 발표 번호 뽑기 | 10분 |
+| 4. Node.js | Node.js | 교실 TV용 뽑기 화면 | 15분 |
+| 5. GitHub CLI | GitHub CLI | 비공개 저장소에 올리기 | 10분 |
+| 6. Vercel CLI | Vercel CLI | 내 링크 만들기 | 10분 |
+| 7. 한 바퀴 | 없음 | 고치기 → 저장 → 올리기 → 다시 배포 | 10분 |
+
+모두 합쳐 75분쯤입니다. 내려받는 속도에 따라 더 걸릴 수 있습니다. 중간에 멈춰도 괜찮습니다. 구간마다 결과물이 남으니 다음에 이어서 하면 됩니다.
+
+## 설치를 맡길 때의 약속 세 가지
+
+1. **승인 창은 읽고 누릅니다.** Claude Code는 명령을 실행하기 전에 허락을 구합니다. <b>무엇을, 어디서 받아, 설치하는지</b>를 읽고 누르세요. 이해가 안 되면 "이 명령이 무슨 일을 하는지 설명해 줘"라고 먼저 물어봅니다.
+2. **비밀번호와 인증 코드는 내가 직접 넣습니다.** 대화창에는 적지 않습니다. 컴퓨터가 띄우는 관리자 확인 창이나 암호 창, 브라우저의 로그인 화면은 선생님이 직접 처리합니다.
+3. **막히면 돌아가지 않고 멈춥니다.** 학교 PC가 설치를 막았다면 이유가 있습니다. Claude Code가 우회 방법을 제안해도 승인하지 말고, [학교 PC 특수 상황](/start/setup#school-pc)을 보세요.
+
+<Callout type="info" title="왜 굳이 CLI를 설치하나요">
+  CLI는 버튼 대신 글자 명령으로 다루는 프로그램입니다. 사람에게는 버튼이 편하지만, Claude Code는 화면의 버튼을 누르는 것보다 글자 명령을 훨씬 잘 다룹니다. 그래서 GitHub CLI와 Vercel CLI를 설치해 두면 "올려 줘", "배포해 줘" 한마디로 일이 끝납니다. **CLI는 Claude Code가 쥘 수 있는 손잡이**입니다.
+</Callout>
+
+## 따라가기
+
+<Lab session={0} title="한번에 따라가는 흐름 · 번호 뽑기를 만들며 환경 갖추기" level="필수" minutes={75} goal="진단 → 설치 → 바로 써 보기를 다섯 번 되풀이합니다. 설치 문장은 매번 같습니다.">
+
+<Step id="f-0" title="0. 출발: 실습 폴더 열기">
+
+<Steps>
+<FdStep>
+바탕화면에 `number-pick`이라는 새 폴더를 만듭니다. 이 이름이 나중에 저장소 이름과 인터넷 주소에 들어가므로 **영어 소문자**로 짓습니다.
+</FdStep>
+<FdStep>
+Claude 데스크톱 앱의 **Code** 탭에서, 입력창 아래 줄의 첫 번째 칸을 **Local** 묶음의 맨 위 항목으로 두고 <b>Open folder…</b>로 `number-pick` 폴더를 고릅니다.
+</FdStep>
+<FdStep>
+같은 줄의 **모드 칸**이 <b>Manual</b>인지 확인합니다. 명령을 실행하기 전에 매번 묻는 모드입니다. 오늘은 무엇이 설치되는지 직접 읽어 보는 것이 목표라서 이 모드로 갑니다.
+</FdStep>
+</Steps>
+
+<Callout type="warn" title="빈 폴더에서 시작하세요">
+  Claude Code는 연 폴더 안의 파일을 읽습니다. 학생 정보가 든 폴더나 바탕화면 전체를 열지 말고, 방금 만든 빈 폴더만 여세요.
+</Callout>
+
+</Step>
+
+<Step id="f-1" title="1. 진단: 내 컴퓨터에 무엇이 있나">
+
+건강검진부터 합니다. 설치는 아직 하지 않습니다.
+
+<PromptCard id="flow-checkup" />
+
+<Expected>{`
+● 개발 환경을 확인했습니다. 결과를 환경-진단서.md에 저장했습니다
+
+  항목            │ 상태    │ 버전
+  운영체제        │ ✓       │ Windows 11
+  설치 도구       │ ✓       │ winget
+  Git             │ ✗ 없음  │ -
+  Python          │ ✗ 없음  │ -
+  Node.js / npm   │ ✗ 없음  │ -
+  GitHub CLI (gh) │ ✗ 없음  │ -
+  Vercel CLI      │ ✗ 없음  │ -
+
+  아직 아무것도 설치하지 않았습니다.
+`}</Expected>
+
+사람마다 결과가 다릅니다. 이미 설치된 것이 있으면 그 구간에서는 설치를 건너뛰고 "바로 해 보는 것"만 하면 됩니다. 옆 선생님의 진단서와 비교해 보세요.
+
+<Trouble>
+<Issue q="확인만 하라고 했는데 승인 창이 여러 번 떠요">버전을 알아보는 명령(`git --version` 같은 것)도 하나씩 허락을 구합니다. 읽어 보면 모두 "확인"하는 명령입니다. 허용하면 됩니다.</Issue>
+<Issue q="'명령어 라인 개발자 도구'를 설치하겠냐는 창이 갑자기 떴어요 (macOS)">Git이 있는지 확인하는 순간 macOS가 띄우는 창입니다. 다음 구간에서 어차피 필요하니 <b>설치</b>를 눌러도 됩니다. 몇 분 걸립니다.</Issue>
+</Trouble>
+
+</Step>
+
+<Step id="f-2" title="2. Git: 설치하고 첫 세이브 포인트 만들기">
+
+<Term id="git">Git</Term>은 작업을 세이브 포인트처럼 저장하고 되돌리는 도구입니다. 아래 문장이 오늘 되풀이할 **설치 문장**입니다. "공식 방법으로", "먼저 알려 줘", "막히면 멈춰"의 세 마디를 눈여겨보세요.
+
+<PromptCard id="flow-install-git" />
+
+<OSBlock
+  win={<p>Windows에서는 보통 <code>winget</code>(Windows에 들어 있는 설치 도구)으로 <b>Git for Windows</b>를 설치합니다. 설치 도중 "이 앱이 디바이스를 변경하도록 허용하시겠어요?"라는 창이 뜨면 <b>예</b>를 누릅니다. 관리자 암호를 묻는데 모른다면 그 PC는 설치가 제한된 것입니다.</p>}
+  mac={<p>macOS에서는 보통 Apple의 <b>명령어 라인 개발자 도구</b>를 설치합니다. 설치 창이 뜨면 <b>설치</b>를 누르고 끝날 때까지 기다린 뒤, Claude Code에게 "설치 끝났어. 확인해 줘"라고 알려 주세요.</p>}
+/>
+
+Git은 저장할 때마다 "누가 저장했는지"를 남깁니다. 이름표를 붙입니다. 이메일은 **GitHub에 가입한 이메일**을 쓰세요.
+
+<PromptCard id="flow-git-identity" />
+
+이제 폴더를 <Term id="repository">저장소</Term>로 만들고 첫 <Term id="commit">커밋</Term>을 합니다.
+
+<PromptCard id="flow-first-commit" />
+
+<Expected>{`
+● 저장소를 만들고 첫 커밋을 했습니다
+
+  a1b2c3d 첫 저장: 환경 진단서
+`}</Expected>
+
+<Trouble>
+<Issue q="방금 설치했는데 Git이 없다고 나와요">새로 설치한 프로그램은 이미 열려 있던 앱에서 바로 안 보일 수 있습니다. Claude 앱을 완전히 종료했다가 다시 열고, 같은 폴더에서 "Git이 설치됐는지 다시 확인해 줘"라고 하세요. 뒤의 Python, Node.js, GitHub CLI도 같은 증상이면 같은 방법으로 풉니다.</Issue>
+<Issue q="관리자 암호를 묻거나 설치가 차단됐어요">학교 PC의 설치 제한입니다. 우회하지 말고 강사에게 알려 주세요. 오늘은 옆 선생님과 짝으로 진행하고, 전산 담당 선생님께 요청할 목록은 [설치 가이드](/start/setup#school-pc)에 있습니다.</Issue>
+<Issue q="이메일을 대화창에 적어도 되나요">Git 설정에 꼭 필요한 값이라 괜찮습니다. 다만 이 이메일은 커밋 기록에 남고, 저장소를 공개로 바꾸면 다른 사람에게도 보입니다. 꺼려지면 GitHub가 제공하는 가림용 주소(noreply)를 쓸 수 있습니다. "GitHub noreply 이메일로 설정하는 법을 알려 줘"라고 물어보세요.</Issue>
+</Trouble>
+
+</Step>
+
+<Step id="f-3" title="3. Python: 설치하고 발표 번호 뽑기 만들기">
+
+<Term id="python">Python</Term>은 계산과 파일 처리에 쓰는 언어입니다. 2회차의 엑셀 취합도 Python으로 합니다. 설치 문장은 아까와 같습니다.
+
+<PromptCard id="flow-install-python" />
+
+설치했으니 바로 씁니다. 오늘의 작품인 **발표 번호 뽑기**의 첫 번째 판입니다.
+
+<PromptCard id="flow-pick-python" />
+
+<Expected>{`
+● pick.py를 만들고 세 번 실행했습니다
+
+  1회: 17번
+  2회: 4번
+  3회: 26번
+
+  뽑힌 번호는 뽑기-기록.txt에 적혀 있어 다시 나오지 않습니다. (남은 번호 27개)
+`}</Expected>
+
+마음에 들면 세이브 포인트를 하나 더 만듭니다.
+
+```text
+"번호 뽑기 첫 판"이라는 메모로 커밋해 줘.
+```
+
+<Callout type="info" title="이름 대신 번호를 쓰는 이유">
+  이 작품은 곧 인터넷에 올라갑니다. 학생 이름이 들어가면 올릴 수 없지만, 번호만 쓰면 어디에 올려도 안전합니다. 학생 정보를 다루지 않도록 설계하는 것이 가장 쉬운 개인정보 보호입니다.
+</Callout>
+
+<Trouble>
+<Issue q="python 대신 python3나 py로 실행하겠대요">운영체제마다 Python을 부르는 이름이 다릅니다. Claude Code가 알아서 맞는 이름을 고르니 그대로 두면 됩니다.</Issue>
+<Issue q="Microsoft Store가 열렸어요 (Windows)">Python이 없는 Windows에서 `python`을 실행하면 스토어가 열리기도 합니다. 창을 닫고 Claude Code에게 "스토어가 열렸어. 설치 문장대로 다시 설치해 줘"라고 하세요.</Issue>
+</Trouble>
+
+</Step>
+
+<Step id="f-4" title="4. Node.js: 설치하고 교실 TV용 화면으로 키우기">
+
+<Term id="nodejs">Node.js</Term>는 웹앱을 내 PC에서 띄우고 웹 개발 도구를 설치하는 데 씁니다. 3회차부터 계속 쓰고, 잠시 뒤에 설치할 Vercel CLI도 Node.js 위에서 돕니다.
+
+<PromptCard id="flow-install-node" />
+
+검은 창에 숫자만 나오는 뽑기는 교실에서 쓰기 어렵습니다. 화면으로 키웁니다.
+
+<PromptCard id="flow-pick-web" />
+
+만든 화면을 내 컴퓨터에서 띄워 봅니다.
+
+<PromptCard id="flow-serve" />
+
+<Expected>{`
+● 웹 서버를 띄웠습니다
+
+  브라우저에서 여세요: http://localhost:3000
+
+  끄려면 "서버 꺼 줘"라고 말하세요.
+`}</Expected>
+
+주소를 브라우저에 붙여 넣고 **뽑기** 버튼을 눌러 보세요. <Term id="localhost">localhost</Term>는 내 컴퓨터 안에서만 열리는 주소라서, 옆 선생님의 컴퓨터에서는 아직 열리지 않습니다.
+
+이제 내 취향으로 고칩니다. 주황색 빈칸을 바꿔서 원하는 것을 말해 보세요.
+
+<PromptCard id="flow-web-polish" />
+
+<Trouble>
+<Issue q="처음 띄울 때 무언가 내려받겠다고 물어요">폴더를 웹 서버로 여는 작은 도구를 받으려는 것입니다. 무엇을 받는지 읽고 허용하세요.</Issue>
+<Issue q="주소의 숫자가 3000이 아니에요">다른 프로그램이 그 번호를 쓰고 있으면 다른 번호가 나옵니다. Claude Code가 알려 준 주소를 그대로 열면 됩니다.</Issue>
+<Issue q="고쳤는데 화면이 그대로예요">브라우저에서 새로 고침(<Kbd keys="mod+r" />)을 누르세요. 그래도 그대로면 "고친 내용이 화면에 안 보여. 확인해 줘"라고 하세요.</Issue>
+</Trouble>
+
+</Step>
+
+<Step id="f-5" title="5. GitHub CLI: 설치하고 비공개 저장소에 올리기">
+
+지금까지의 세이브 포인트는 내 컴퓨터에만 있습니다. <Term id="github">GitHub</Term>에 올려 두면 컴퓨터가 고장 나도 남고, 다른 컴퓨터에서도 이어 할 수 있습니다. GitHub CLI는 Claude Code가 GitHub를 다루는 손잡이입니다.
+
+<PromptCard id="flow-install-gh" />
+
+로그인은 선생님이 직접 합니다. Claude Code는 시작과 확인만 맡습니다.
+
+<PromptCard id="flow-gh-login" />
+
+<Steps>
+<FdStep>
+Claude Code가 `ABCD-1234` 같은 **일회용 코드**와 주소(`github.com/login/device`)를 알려 줍니다.
+</FdStep>
+<FdStep>
+브라우저에서 그 주소를 열고(자동으로 열리기도 합니다) 코드를 입력합니다. 주소가 `github.com`으로 시작하는지 꼭 확인하세요.
+</FdStep>
+<FdStep>
+GitHub CLI에 권한을 줄지 묻는 화면에서 내 계정이 맞는지 보고 승인합니다.
+</FdStep>
+<FdStep>
+Claude Code로 돌아와 `끝났어`라고 말합니다.
+</FdStep>
+</Steps>
+
+이제 올립니다. 기본은 <Term id="private-repo">비공개</Term>입니다.
+
+<PromptCard id="flow-gh-push" />
+
+<Expected>{`
+● 비공개 저장소를 만들고 올렸습니다
+
+  https://github.com/내아이디/number-pick  (Private)
+  올라간 커밋 3개
+`}</Expected>
+
+브라우저에서 저장소 주소를 열어 보세요. 방금까지의 커밋 메모가 날짜와 함께 쌓여 있습니다.
+
+<Trouble>
+<Issue q="코드가 안 보이거나 로그인이 멈춘 것 같아요">"로그인을 다시 시작해서 코드와 주소를 알려 줘"라고 하세요. 그래도 안 되면 강사에게 알려 주세요. 앱의 터미널 창에 `gh auth login`을 직접 입력해 화면 안내대로 진행하는 방법이 있습니다.</Issue>
+<Issue q="같은 이름의 저장소가 이미 있대요">저장소 이름의 빈칸을 `number-pick-2`처럼 바꿔 다시 시키세요.</Issue>
+<Issue q="코드를 Claude에게 알려 줘도 되나요">일회용 코드는 Claude Code가 화면에 보여 주는 값이라 괜찮습니다. 적으면 안 되는 것은 GitHub **비밀번호**와 휴대폰으로 오는 **2단계 인증 코드**입니다.</Issue>
+</Trouble>
+
+</Step>
+
+<Step id="f-6" title="6. Vercel CLI: 설치하고 내 링크 만들기">
+
+마지막 손잡이입니다. <Term id="vercel">Vercel</Term>은 만든 화면을 인터넷 주소로 올려 줍니다. 이것을 <Term id="deploy">배포</Term>라고 합니다.
+
+<PromptCard id="flow-install-vercel" />
+
+<PromptCard id="flow-vercel-login" />
+
+GitHub 때와 같습니다. Claude Code가 알려 준 주소를 브라우저에서 열고, 주소가 `vercel.com`으로 시작하는지 확인한 뒤 승인하고, 돌아와 `끝났어`라고 말합니다.
+
+이제 올립니다.
+
+<PromptCard id="flow-vercel-deploy" />
+
+<Expected>{`
+● 배포했습니다
+
+  대표 주소: https://number-pick-xxxx.vercel.app
+  ✓ 주소가 정상으로 열립니다 (200)
+`}</Expected>
+
+**휴대폰으로 그 주소를 열어 보세요.** 옆 선생님께 링크를 보내 서로의 뽑기를 눌러 보세요. 조금 전까지 내 컴퓨터에서만 열리던 화면이 이제 어디서나 열립니다.
+
+<Callout type="warn" title="폴더에 있는 것은 올라갑니다">
+  배포하면 폴더 안의 파일이 인터넷에 올라갑니다. 오늘 폴더에는 번호 뽑기와 진단서뿐이라 괜찮지만, 앞으로는 배포하기 전에 "올라갈 파일 목록을 먼저 보여 줘"라고 묻는 습관을 들이세요. 학생 정보가 든 파일이 있는 폴더는 배포하지 않습니다.
+</Callout>
+
+<Trouble>
+<Issue q="설치할 때 권한 오류(EACCES)가 났어요 (macOS)">컴퓨터 전체에 설치하려다 막힌 것입니다. 관리자 권한으로 밀어붙이지 말고 "전역 설치 없이 npx로 Vercel CLI를 쓰는 방식으로 해 줘"라고 하세요.</Issue>
+<Issue q="주소를 열었더니 Vercel 로그인 화면이 나와요">배포할 때마다 생기는 긴 주소는 로그인한 사람에게만 보일 수 있습니다. "대표 주소(프로젝트이름.vercel.app)를 알려 줘"라고 하세요.</Issue>
+<Issue q="질문이 영어로 여러 개 나오다 멈췄어요">Vercel CLI가 프로젝트 이름과 계정을 묻는 것입니다. Claude Code에게 "기본값으로 답하고 진행해 줘"라고 하면 됩니다.</Issue>
+</Trouble>
+
+</Step>
+
+<Step id="f-7" title="7. 한 바퀴: 고치기 → 저장 → 올리기 → 다시 배포">
+
+환경이 다 갖춰졌습니다. 이제 한 문장으로 한 바퀴를 돌려 봅니다.
+
+<PromptCard id="flow-update-cycle" />
+
+배포 주소를 새로 고쳐 바뀐 것을 확인하세요. 고치기 → <Term id="commit">커밋</Term> → <Term id="push">푸시</Term> → 배포. 앞으로 만드는 모든 것이 이 길로 다닙니다.
+
+마지막으로 진단서를 다시 받습니다.
+
+<PromptCard id="flow-wrapup" />
+
+<Expected>{`
+● 환경-진단서.md를 갱신하고 GitHub에 올렸습니다
+
+  항목            │ 처음    │ 지금
+  Git             │ ✗ 없음  │ ✓
+  Python          │ ✗ 없음  │ ✓
+  Node.js / npm   │ ✗ 없음  │ ✓
+  GitHub CLI (gh) │ ✗ 없음  │ ✓ 로그인됨
+  Vercel CLI      │ ✗ 없음  │ ✓ 로그인됨
+`}</Expected>
+
+</Step>
+
+</Lab>
+
+## 오늘 내 컴퓨터에 남은 것
+
+| 설치한 것 | 한 줄 설명 | 다시 쓰는 곳 |
+| --- | --- | --- |
+| Git | 세이브 포인트를 만들고 되돌리는 도구 | [3회차](/sessions/3)부터 계속 |
+| Python | 계산과 파일 처리 | [2회차](/sessions/2)의 수행평가 점수 취합 |
+| Node.js | 웹앱을 내 PC에서 띄우는 도구 | [3회차](/sessions/3), [4회차](/sessions/4), [8회차](/sessions/8) |
+| GitHub CLI | Claude Code가 GitHub를 다루는 손잡이 | [3회차](/sessions/3)의 저장소 올리기 |
+| Vercel CLI | Claude Code가 배포를 다루는 손잡이 | [3회차](/sessions/3)의 배포 |
+
+오늘 되풀이한 **설치 문장**은 앞으로도 그대로 씁니다. 새 프로그램이 필요해지면 이름만 바꿔 말하세요.
+
+```text
+○○이 없으면 이 컴퓨터에 맞는 공식 방법으로 설치해 줘. 설치하기 전에 무엇을 어디서 받아 설치하는지
+한 줄로 먼저 알려 줘. 관리자 암호를 요구하거나 설치가 차단되면 우회하지 말고 멈춰서 알려 줘.
+끝나면 버전을 확인해 줘.
+```
+
+## 집에서 이어 하기
+
+- **번호 뽑기를 내 것으로**: "결석 번호를 빼는 칸을 넣어 줘", "모둠 나누기 기능을 넣어 줘"처럼 말로 키워 보세요. 고칠 때마다 커밋하고 다시 배포합니다.
+- **지우고 싶다면**: "Vercel에 배포한 number-pick 프로젝트와 GitHub 저장소를 지우는 방법을 알려 줘. 지우는 것은 내가 직접 할게"라고 물어보세요.
+- **차근차근 다시**: [1회차](/sessions/1)에서 폴더 정리로 Claude Code의 기본기를, [3회차](/sessions/3)에서 Git·GitHub·배포를 더 깊게 다룹니다. 오늘 한 것이 거기서 다시 나옵니다.
+- **가입과 결제를 다시 보려면**: [연수 전 준비: 가입과 설치](/start/signup)
+
+<Cards>
+  <Card title="1회차 시작" href="/sessions/1" description="교무실 공유폴더를 AI에게 처음 맡기기" />
+  <Card title="3회차" href="/sessions/3" description="Git·GitHub, 그리고 배포를 더 깊게" />
+  <Card title="설치 가이드" href="/start/setup" description="프로그램별 설치와 학교 PC에서 챙길 것" />
+</Cards>
