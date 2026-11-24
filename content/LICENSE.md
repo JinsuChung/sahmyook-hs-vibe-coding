@@ -1,26 +1,33 @@
-글과 교육 자료: 크리에이티브 커먼즈 저작자표시 4.0 국제 라이선스 (CC BY 4.0)
+# 글과 교육 자료: CC BY 4.0
+
+크리에이티브 커먼즈 저작자표시 4.0 국제 라이선스
+
 Copyright (c) 2026 Jinsu Chung (정진수)
 
 이 저장소의 글과 교육 자료는 CC BY 4.0으로 공개합니다. 출처만 밝히면 누구나
 복제·배포·수정·2차 저작물 작성에 자유롭게 쓸 수 있고, 영리 목적으로도 쓸 수 있습니다.
 
-라이선스 요약: https://creativecommons.org/licenses/by/4.0/deed.ko
-라이선스 전문: https://creativecommons.org/licenses/by/4.0/legalcode.ko
+- 라이선스 요약: https://creativecommons.org/licenses/by/4.0/deed.ko
+- 라이선스 전문: https://creativecommons.org/licenses/by/4.0/legalcode.ko
 
-■ 적용 범위
+## 적용 범위
+
 - content/ 폴더: 회차 본문, 프롬프트, 퀴즈, 용어사전, 체크리스트, FAQ, 예시
 - public/downloads/ 의 인쇄용 교재 PDF와 자료실 실습 문서(가상 데이터)
 - 위 내용을 화면에 그린 사이트 https://sahmyook-hs-vibe-coding.vercel.app 의 글
 
 그 밖의 소스 코드(app/, components/, lib/, scripts/, samples/ 등)는
-MIT 라이선스입니다. LICENSE 파일을 보세요.
+MIT 라이선스입니다. 저장소 맨 위의 [LICENSE](../LICENSE) 파일을 보세요.
 
-■ 출처 표시 예
-  정진수, 「교실과 교무실을 바꾸는 바이브 코딩」(서울삼육고등학교 교사 연수),
-  https://sahmyook-hs-vibe-coding.vercel.app , CC BY 4.0
+## 출처 표시 예
+
+> 정진수, 「교실과 교무실을 바꾸는 바이브 코딩」(서울삼육고등학교 교사 연수),
+> https://sahmyook-hs-vibe-coding.vercel.app , CC BY 4.0
+
 고친 자료라면 "…을 바탕으로 고쳐 만들었습니다"처럼 바꾼 사실도 적어 주세요.
 
-■ 이 라이선스가 적용되지 않는 것
+## 이 라이선스가 적용되지 않는 것
+
 - 김소월 「진달래꽃」 본문: 저작권 보호 기간이 끝난 공유 저작물입니다.
 - Claude, GitHub, Vercel 등 제품 이름과 상표: 각 소유자의 것입니다.
 
@@ -28,4 +35,4 @@ MIT 라이선스입니다. LICENSE 파일을 보세요.
 
 Written course content: Creative Commons Attribution 4.0 International (CC BY 4.0)
 https://creativecommons.org/licenses/by/4.0/
-Source code is licensed under the MIT License (see LICENSE).
+Source code is licensed under the MIT License (see ../LICENSE).

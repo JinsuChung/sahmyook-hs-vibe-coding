@@ -56,5 +56,5 @@ pnpm dev
 이 저장소를 가져다 내 수업 사이트로 고쳐 써도 됩니다. 출처만 밝혀 주세요. 방법은 사이트의 [내 수업 사이트 만들기](https://sahmyook-hs-vibe-coding.vercel.app/remix)에 있습니다.
 
 - 코드: [MIT](LICENSE)
-- 글과 교육 자료(`content/`, 교재 PDF, 실습 문서): [CC BY 4.0](LICENSE-CONTENT)
+- 글과 교육 자료(`content/`, 교재 PDF, 실습 문서): [CC BY 4.0](content/LICENSE.md)
 - 김소월 「진달래꽃」 본문은 저작권 보호 기간이 끝난 공유 저작물입니다.
