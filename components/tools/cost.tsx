@@ -2,6 +2,8 @@
 import { useMemo, useState } from 'react';
 import { modelPricing, pricingChecked, pricingSource, type ModelPrice } from '@/content/data/facts';
 import { cn } from '@/lib/cn';
+import { usePrintMode } from '@/lib/print-mode';
+import { PrintPlaceholder } from '@/components/ui/print-placeholder';
 
 /**
  * 어림 계산에 쓰는 가정.
@@ -117,6 +119,12 @@ function chatCost(m: ModelPrice, c: Chat) {
 }
 
 export function CostCalculator() {
+  const print = usePrintMode();
+  if (print.on) return <PrintPlaceholder kind="계산기" title="API 비용 계산기" />;
+  return <CostCalculatorInner />;
+}
+
+function CostCalculatorInner() {
   const [model, setModel] = useState<string>(modelPricing[0].id);
   const [mode, setMode] = useState<Mode>('doc');
   const [doc, setDoc] = useState<Doc>(DOC_DEFAULT);

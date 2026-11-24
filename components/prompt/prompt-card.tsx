@@ -5,6 +5,7 @@ import { ChevronDown, ClipboardEdit, ExternalLink, Lightbulb, PauseCircle, Star 
 import { categories, fillPrompt, getPrompt, levels, type Prompt, type PromptVar } from '@/content/data/prompts';
 import { useStored } from '@/lib/storage';
 import { cn } from '@/lib/cn';
+import { usePrintMode } from '@/lib/print-mode';
 import { CopyButton } from './copy-button';
 
 type Props = {
@@ -59,7 +60,9 @@ export function PromptCard({ id, text: rawText, title: rawTitle, vars: rawVars, 
 
   const [values, setValues] = useStored<Record<string, string>>(`vars:${id ?? title ?? text.slice(0, 20)}`, {});
   const [open, setOpen] = useState(false);
-  const [whyOpen, setWhyOpen] = useState(!!showWhy);
+  const print = usePrintMode();
+  const [whyOpenRaw, setWhyOpen] = useState(!!showWhy);
+  const whyOpen = whyOpenRaw || (print.on && !compact);
   const [fav, setFav] = useStored<string[]>('fav', []);
 
   const filled = useMemo(() => fillPrompt(text, values, vars), [text, values, vars]);
@@ -131,7 +134,7 @@ export function PromptCard({ id, text: rawText, title: rawTitle, vars: rawVars, 
         </div>
       )}
 
-      <div className="flex flex-wrap items-center gap-2 border-t px-4 py-2.5">
+      {!print.on && <div className="flex flex-wrap items-center gap-2 border-t px-4 py-2.5">
         <CopyButton text={() => filled} />
         {vars.length > 0 && (
           <button
@@ -164,7 +167,7 @@ export function PromptCard({ id, text: rawText, title: rawTitle, vars: rawVars, 
             <ExternalLink className="size-3" />
           </Link>
         )}
-      </div>
+      </div>}
 
       {whyOpen && data?.why && (
         <div className="border-t bg-fd-secondary/50 px-4 py-3 text-[0.95rem] leading-7">

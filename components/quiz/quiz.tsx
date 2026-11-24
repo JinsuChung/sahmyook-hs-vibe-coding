@@ -4,10 +4,59 @@ import { ArrowDown, ArrowUp, Award, Check, RotateCcw, X } from 'lucide-react';
 import { quizzes, type Question } from '@/content/data/quizzes';
 import { useStored } from '@/lib/storage';
 import { cn } from '@/lib/cn';
+import { usePrintMode } from '@/lib/print-mode';
+import { CIRCLED, HANGUL, printOrder } from '@/lib/quiz-print';
 
 type Result = Record<number, boolean>;
 
+function PrintQuiz({ list }: { list: Question[] }) {
+  return (
+    <div className="not-prose my-6 rounded-2xl border">
+      <div className="book-keep-next flex flex-wrap items-center gap-3 border-b px-5 py-3">
+        <span className="text-lg font-bold">복습 퀴즈</span>
+        <span className="text-sm text-fd-muted-foreground">{list.length}문항 · 정답과 해설은 책 끝 부록에 있어요</span>
+      </div>
+      <ol className="divide-y">
+        {list.map((q, i) => (
+          <li key={i} className="book-avoid px-5 py-3">
+            <p className="mb-2 font-semibold leading-7">
+              <span className="mr-2 text-fd-primary">Q{i + 1}.</span>
+              {q.q}
+              {q.type === 'ox' && <span className="ml-2 whitespace-nowrap font-normal text-fd-muted-foreground">( O / X )</span>}
+              {q.type === 'order' && <span className="ml-1 text-sm font-normal text-fd-muted-foreground">(순서대로 기호를 쓰세요)</span>}
+            </p>
+            {q.type === 'single' && (
+              <ul className="grid gap-1 text-[0.95rem] leading-7">
+                {q.options.map((o, j) => (
+                  <li key={j}>
+                    {CIRCLED[j]} {o}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {q.type === 'order' && (
+              <ul className="grid gap-1 text-[0.95rem] leading-7">
+                {printOrder(q.items.length).map((idx, p) => (
+                  <li key={p}>
+                    ({HANGUL[p]}) {q.items[idx]}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
 export function Quiz({ session }: { session: number }) {
+  const print = usePrintMode();
+  if (print.on) return <PrintQuiz list={quizzes[session] ?? []} />;
+  return <InteractiveQuiz session={session} />;
+}
+
+function InteractiveQuiz({ session }: { session: number }) {
   const list = quizzes[session] ?? [];
   const [result, setResult] = useStored<Result>(`quiz:${session}`, {});
   const [round, setRound] = useState(0);

@@ -4,10 +4,13 @@ import { CheckSquare, Square } from 'lucide-react';
 import { checklists } from '@/content/data/checklists';
 import { useStored } from '@/lib/storage';
 import { cn } from '@/lib/cn';
+import { usePrintMode } from '@/lib/print-mode';
 
 export function Checklist({ list, compact }: { list: string; compact?: boolean }) {
   const data = checklists[list];
-  const [checked, setChecked] = useStored<string[]>(`check:${list}`, []);
+  const print = usePrintMode();
+  const [checkedRaw, setChecked] = useStored<string[]>(`check:${list}`, []);
+  const checked = print.on ? [] : checkedRaw;
   if (!data) return null;
   const done = data.items.filter((i) => checked.includes(i.id)).length;
   const all = done === data.items.length;
@@ -16,14 +19,14 @@ export function Checklist({ list, compact }: { list: string; compact?: boolean }
     <div className="not-prose my-5 rounded-xl border bg-fd-card">
       <div className="flex items-center gap-3 border-b px-4 py-2.5">
         <span className="font-semibold">{data.title}</span>
-        <span
+        {!print.on && <span
           className={cn(
             'ml-auto rounded-full px-2 py-0.5 text-xs font-semibold tabular-nums',
             all ? 'bg-[var(--color-ok)] text-white' : 'bg-fd-muted text-fd-muted-foreground',
           )}
         >
           {all ? '준비 완료' : `${done} / ${data.items.length}`}
-        </span>
+        </span>}
       </div>
       <ul className="divide-y">
         {data.items.map((item) => {
@@ -33,6 +36,7 @@ export function Checklist({ list, compact }: { list: string; compact?: boolean }
               <button
                 type="button"
                 role="checkbox"
+                data-print-keep
                 aria-checked={on}
                 aria-label={item.label}
                 onClick={() => setChecked((c) => (c.includes(item.id) ? c.filter((x) => x !== item.id) : [...c, item.id]))}

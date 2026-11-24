@@ -4,6 +4,8 @@ import { Sparkles } from 'lucide-react';
 import { useStored } from '@/lib/storage';
 import { cn } from '@/lib/cn';
 import { CopyButton } from '@/components/prompt/copy-button';
+import { usePrintMode } from '@/lib/print-mode';
+import { PrintPlaceholder } from '@/components/ui/print-placeholder';
 
 type Fields = { purpose: string; input: string; output: string; rules: string; verify: string };
 type Opts = { planFirst: boolean; interview: boolean; resultFolder: boolean; korean: boolean };
@@ -63,6 +65,12 @@ const LABELS: { key: keyof Fields; label: string; q: string; ph: string }[] = [
 ];
 
 export function PromptBuilder() {
+  const print = usePrintMode();
+  if (print.on) return <PrintPlaceholder kind="도구" title="프롬프트 빌더" />;
+  return <PromptBuilderInner />;
+}
+
+function PromptBuilderInner() {
   const [f, setF] = useStored<Fields>('builder:fields', EMPTY);
   const [o, setO] = useStored<Opts>('builder:opts', DEFAULT_OPTS);
 

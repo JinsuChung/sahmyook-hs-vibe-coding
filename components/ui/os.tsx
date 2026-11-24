@@ -2,6 +2,7 @@
 import { useEffect, type ReactNode } from 'react';
 import { readStored, useStored, writeStored } from '@/lib/storage';
 import { cn } from '@/lib/cn';
+import { usePrintMode } from '@/lib/print-mode';
 
 export type OS = 'win' | 'mac';
 
@@ -53,6 +54,14 @@ export function OSSwitch({ className }: { className?: string }) {
 /** 선택한 OS일 때만 보이는 내용 */
 export function OSOnly({ os, children }: { os: OS; children: ReactNode }) {
   const [current] = useOS();
+  const print = usePrintMode();
+  if (print.on)
+    return (
+      <div className="book-os">
+        <span className="book-os-label">{os === 'win' ? 'Windows' : 'macOS'}</span>
+        {children}
+      </div>
+    );
   if (current !== os) return null;
   return <>{children}</>;
 }
@@ -60,6 +69,23 @@ export function OSOnly({ os, children }: { os: OS; children: ReactNode }) {
 /** 본문 안에서 OS 탭처럼 보여 주는 블록 */
 export function OSBlock({ win, mac }: { win: ReactNode; mac: ReactNode }) {
   const [os] = useOS();
+  const print = usePrintMode();
+  if (print.on)
+    return (
+      <div className="my-4 grid gap-0 overflow-hidden rounded-xl border bg-fd-card">
+        {(
+          [
+            ['Windows', win],
+            ['macOS', mac],
+          ] as const
+        ).map(([label, body], i) => (
+          <div key={label} className={cn('px-4', i > 0 && 'border-t')}>
+            <p className="not-prose mt-2.5 text-xs font-bold text-fd-primary">{label}</p>
+            <div className="[&>:first-child]:mt-1 [&>:last-child]:mb-3">{body}</div>
+          </div>
+        ))}
+      </div>
+    );
   return (
     <div className="my-5 rounded-xl border bg-fd-card">
       <div className="not-prose flex items-center justify-between gap-2 border-b px-4 py-2">
@@ -84,7 +110,18 @@ const KEY_LABEL: Record<string, { win: string; mac: string }> = {
 
 /** 단축키 표시. keys="mod+c" → Ctrl+C / ⌘C */
 export function Kbd({ keys }: { keys: string }) {
-  const [os] = useOS();
+  const [current] = useOS();
+  const print = usePrintMode();
+  if (print.on && keys.includes('mod'))
+    return (
+      <span>
+        <KbdOne keys={keys} os="win" /> / <KbdOne keys={keys} os="mac" />
+      </span>
+    );
+  return <KbdOne keys={keys} os={current} />;
+}
+
+function KbdOne({ keys, os }: { keys: string; os: OS }) {
   const parts = keys.split('+').map((k) => KEY_LABEL[k.toLowerCase()]?.[os] ?? k.toUpperCase());
   return (
     <span className="inline-flex items-center gap-0.5 align-baseline">

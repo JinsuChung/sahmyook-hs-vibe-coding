@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import { AlertTriangle, CheckCircle2, ChevronDown, Circle, LifeBuoy, MonitorCheck } from 'lucide-react';
 import { readStored, useStored, writeStored } from '@/lib/storage';
 import { cn } from '@/lib/cn';
+import { usePrintMode } from '@/lib/print-mode';
 
 const LabCtx = createContext<{ session: number } | null>(null);
 const registry = new Map<number, Set<string>>();
@@ -55,9 +56,12 @@ export function Lab({
 export function Step({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   const ctx = useContext(LabCtx);
   const session = ctx?.session ?? 0;
-  const [done, setDone] = useStored<string[]>(`lab:${session}`, []);
+  const print = usePrintMode();
+  const [doneRaw, setDone] = useStored<string[]>(`lab:${session}`, []);
+  const done = print.on ? [] : doneRaw;
   const isDone = done.includes(id);
-  const [open, setOpen] = useState(true);
+  const [openRaw, setOpen] = useState(true);
+  const open = print.on || openRaw;
 
   useEffect(() => {
     register(session, id);
@@ -71,6 +75,7 @@ export function Step({ id, title, children }: { id: string; title: string; child
       <div className="flex items-start gap-3 px-5 py-3.5">
         <button
           type="button"
+          data-print-keep
           aria-label={isDone ? '완료 취소' : '완료로 표시'}
           onClick={() => setDone((d) => (d.includes(id) ? d.filter((x) => x !== id) : [...d, id]))}
           className="mt-0.5 shrink-0 text-fd-muted-foreground hover:text-[var(--color-ok)]"
@@ -81,6 +86,7 @@ export function Step({ id, title, children }: { id: string; title: string; child
           type="button"
           onClick={() => setOpen((o) => !o)}
           aria-expanded={open}
+          data-print-keep
           className="flex flex-1 items-center gap-2 text-left"
         >
           <span className={cn('text-[1.02rem] font-semibold', isDone && 'text-fd-muted-foreground line-through')}>
@@ -114,7 +120,7 @@ export function Expected({ title = '이렇게 되면 성공', children }: { titl
       <div className="flex items-center gap-1.5 bg-[color-mix(in_oklab,var(--color-ok)_10%,transparent)] px-3 py-1.5 text-xs font-semibold text-[var(--color-ok)]">
         <MonitorCheck className="size-3.5" /> {title}
       </div>
-      <div className="overflow-x-auto bg-[#0f1419] px-4 py-3 font-mono text-[0.82rem] leading-6 whitespace-pre text-[#d6dde6]">
+      <div className="expected-box overflow-x-auto bg-[#0f1419] px-4 py-3 font-mono text-[0.82rem] leading-6 whitespace-pre text-[#d6dde6]">
         {typeof children === 'string'
           ? children
               .replace(/^\n+|\s+$/g, '')
@@ -151,13 +157,16 @@ export function Trouble({ children }: { children: ReactNode }) {
 }
 
 export function Issue({ q, children }: { q: string; children: ReactNode }) {
-  const [open, setOpen] = useState(false);
+  const print = usePrintMode();
+  const [openRaw, setOpen] = useState(false);
+  const open = print.on || openRaw;
   return (
     <div>
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
+        data-print-keep
         className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm hover:bg-fd-accent/50"
       >
         <AlertTriangle className="size-3.5 shrink-0 text-[var(--color-warn)]" />

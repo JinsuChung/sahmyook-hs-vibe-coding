@@ -11,11 +11,13 @@ import { cn } from '@/lib/cn';
 import { CopyButton } from '@/components/prompt/copy-button';
 import { ProgressBar, useSessionProgress } from '@/components/progress/progress';
 import { ClassStat } from '@/components/class/class-board';
+import { usePrintMode } from '@/lib/print-mode';
 
 /** 회차 머리말: 한 문장, 학습 목표, 진도 */
 export function SessionHeader({ n }: { n: number }) {
   const s = getSession(n);
   const p = useSessionProgress(n);
+  const print = usePrintMode();
   return (
     <div className="not-prose mb-8 overflow-hidden rounded-2xl border">
       <div className="relative px-6 py-5 text-white" style={{ background: `linear-gradient(135deg, #002855, ${s.color})` }}>
@@ -45,7 +47,7 @@ export function SessionHeader({ n }: { n: number }) {
             <Wrench className="size-4" /> 오늘 만드는 것: <span className="font-medium text-fd-foreground">{s.output}</span>
           </p>
         </div>
-        <div className="min-w-44 rounded-xl border bg-fd-background p-4 md:self-start">
+        {!print.on && <div className="min-w-44 rounded-xl border bg-fd-background p-4 md:self-start">
           <p className="text-sm font-semibold">실습 진도</p>
           <p className="mt-1 text-2xl font-bold tabular-nums">{p.total ? `${p.pct}%` : '—'}</p>
           <ProgressBar pct={p.pct} className="mt-2" />
@@ -53,7 +55,7 @@ export function SessionHeader({ n }: { n: number }) {
             {p.total ? `${p.done} / ${p.total} 단계` : '실습 단계를 체크하면 표시돼요'}
           </p>
           <ClassStat track={n} />
-        </div>
+        </div>}
       </div>
     </div>
   );
@@ -61,9 +63,11 @@ export function SessionHeader({ n }: { n: number }) {
 
 /** 이 회차의 프롬프트 모두 보기 + 한 번에 복사 */
 export function SessionPrompts({ n }: { n: number }) {
+  const print = usePrintMode();
   const list = prompts.filter((p) => p.sessions.includes(n));
   const all = () =>
     list.map((p, i) => `${i + 1}. ${p.title}\n${fillPrompt(p.text, {}, p.vars)}`).join('\n\n');
+  if (print.on) return null;
   return (
     <div className="not-prose my-5 rounded-xl border">
       <div className="flex items-center justify-between gap-2 border-b px-4 py-2.5">
@@ -87,6 +91,18 @@ export function SessionPrompts({ n }: { n: number }) {
 /** 과제 입력: 브라우저에만 저장되고 복사해서 제출 */
 export function Assignment({ id, title, children, placeholder }: { id: string; title: string; children?: ReactNode; placeholder?: string }) {
   const [text, setText] = useStored<string>(`hw:${id}`, '');
+  const print = usePrintMode();
+  if (print.on)
+    return (
+      <div className="not-prose my-5 rounded-xl border-2 border-dashed border-fd-primary/30 p-4">
+        <p className="flex items-center gap-1.5 font-semibold">
+          <NotebookPen className="size-4 text-fd-primary" /> 과제 · {title}
+        </p>
+        {children && <div className="mt-1 text-[0.95rem] leading-7 text-fd-muted-foreground">{children}</div>}
+        {placeholder && <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-fd-muted-foreground/80">{placeholder}</p>}
+        <div className="book-lines mt-2" aria-hidden />
+      </div>
+    );
   return (
     <div className="not-prose my-5 rounded-xl border-2 border-dashed border-fd-primary/30 bg-fd-secondary/30 p-4">
       <p className="flex items-center gap-1.5 font-semibold">
@@ -163,6 +179,8 @@ export function RelatedExamples({ n, limit = 3 }: { n: number; limit?: number })
 
 /** 다음 회차 안내 */
 export function NextSession({ n }: { n: number }) {
+  const print = usePrintMode();
+  if (print.on) return null;
   // 회차(정수) 다음에는 n.5 깊이 파기를 먼저 안내한다
   const self = Number.isInteger(n) ? getSelfStudy(n + 0.5) : undefined;
   if (self) {
@@ -234,7 +252,9 @@ export function Analogy({ title, children }: { title: string; children: ReactNod
 export function SelfStudyHeader({ n }: { n: number }) {
   const s = getSelfStudy(n)!;
   const p = useSessionProgress(n);
-  const [doneDays, setDoneDays] = useStored<string[]>(`days:${n}`, []);
+  const print = usePrintMode();
+  const [doneDaysRaw, setDoneDays] = useStored<string[]>(`days:${n}`, []);
+  const doneDays = print.on ? [] : doneDaysRaw;
   return (
     <div className="not-prose mb-8 overflow-hidden rounded-2xl border">
       <div className="bg-[linear-gradient(135deg,#0b2f63,#00a3e0)] px-6 py-5 text-white">
@@ -262,6 +282,7 @@ export function SelfStudyHeader({ n }: { n: number }) {
                   <button
                     type="button"
                     role="checkbox"
+                    data-print-keep
                     aria-checked={on}
                     aria-label={`${d.day} 완료`}
                     onClick={() => setDoneDays((x) => (x.includes(d.day) ? x.filter((v) => v !== d.day) : [...x, d.day]))}
@@ -279,7 +300,7 @@ export function SelfStudyHeader({ n }: { n: number }) {
             })}
           </ul>
         </div>
-        <div className="min-w-44 rounded-xl border bg-fd-background p-4 md:self-start">
+        {!print.on && <div className="min-w-44 rounded-xl border bg-fd-background p-4 md:self-start">
           <p className="text-sm font-semibold">미션 진도</p>
           <p className="mt-1 text-2xl font-bold tabular-nums">{p.total ? `${p.pct}%` : '—'}</p>
           <ProgressBar pct={p.pct} className="mt-2" />
@@ -287,7 +308,7 @@ export function SelfStudyHeader({ n }: { n: number }) {
             {p.total ? `${p.done} / ${p.total} 단계` : '미션 단계를 체크하면 표시돼요'}
           </p>
           <ClassStat track={n} />
-        </div>
+        </div>}
       </div>
     </div>
   );

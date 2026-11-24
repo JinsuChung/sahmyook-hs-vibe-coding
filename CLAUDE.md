@@ -11,3 +11,4 @@
 - 색은 `app/global.css`의 토큰을 쓴다. 글꼴은 Pretendard, 기본 자간 -0.02em.
 - 패키지를 넣거나 버전을 바꾸면 `pnpm audit --audit-level critical`을 통과시킨다(완성본 샘플은 각 폴더에서 `npm audit --audit-level=critical`).
 - 변경 후 `node scripts/check-content.mjs`와 `pnpm build`가 통과하는지 확인한다.
+- 인쇄용 교재는 `/book`(app/book)이 사이트 내용을 모아 그리고, `public/downloads/sahmyook-hs-vibe-coding-book.pdf`는 `scripts/make-book-pdf.mjs`로 만든다(사용법은 파일 머리말). 본문을 고치면 PDF도 다시 만든다. 인쇄에서만 달라지는 부품 모양은 `usePrintMode()`로 고른다.

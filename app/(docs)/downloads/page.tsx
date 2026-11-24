@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Download, FileArchive, GitBranch } from 'lucide-react';
+import { BookOpen, Download, FileArchive, GitBranch } from 'lucide-react';
 import { Callout } from 'fumadocs-ui/components/callout';
 import { PageShell } from '@/components/ui/page-shell';
 import { ProgressTransfer } from '@/components/library/progress-transfer';
@@ -10,6 +10,12 @@ export const metadata: Metadata = { title: '자료실', description: '실습 자
 type FileItem = { name: string; file: string; desc: string; icon: typeof FileArchive };
 
 const groups: { title: string; files: FileItem[] }[] = [
+  {
+    title: '교재',
+    files: [
+      { name: '인쇄용 교재 PDF · 전체 과정 한 권', file: '/downloads/sahmyook-hs-vibe-coding-book.pdf', desc: 'A4 350여 쪽. 시작하기, 1–8회차와 깊이 파기, 퀴즈 정답·용어사전·자주 묻는 질문까지. 브라우저에서 바로 인쇄하려면 /book 페이지를 여세요', icon: BookOpen },
+    ],
+  },
   {
     title: '1부 · 바이브 코딩 기초',
     files: [
