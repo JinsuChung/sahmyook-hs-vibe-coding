@@ -13,7 +13,7 @@ const groups: { title: string; files: FileItem[] }[] = [
   {
     title: '교재',
     files: [
-      { name: '인쇄용 교재 PDF · 전체 과정 한 권', file: '/downloads/sahmyook-hs-vibe-coding-book.pdf', desc: 'A4 350여 쪽. 시작하기, 1–8회차와 깊이 파기, 퀴즈 정답·용어사전·자주 묻는 질문까지. 브라우저에서 바로 인쇄하려면 /book 페이지를 여세요', icon: BookOpen },
+      { name: '인쇄용 교재 PDF · 전체 과정 한 권', file: '/downloads/sahmyook-hs-vibe-coding-book.pdf', desc: 'A4 360여 쪽. 시작하기, 1–8회차와 깊이 파기, 내 수업 사이트 만들기, 퀴즈 정답·용어사전·자주 묻는 질문까지. 브라우저에서 바로 인쇄하려면 /book 페이지를 여세요', icon: BookOpen },
     ],
   },
   {

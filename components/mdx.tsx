@@ -1,6 +1,6 @@
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 import { Step as FdStep, Steps } from 'fumadocs-ui/components/steps';
-import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Tab, Tabs } from '@/components/ui/print-tabs';
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 import type { MDXComponents } from 'mdx/types';
 import { PromptCard } from '@/components/prompt/prompt-card';
@@ -25,6 +25,7 @@ import { OSBlock, OSOnly, Kbd } from '@/components/ui/os';
 import { Sim } from '@/components/sim';
 import { CostCalculator, CostTable } from '@/components/tools/cost';
 import { PromptBuilder } from '@/components/tools/prompt-builder';
+import { WordPicker, FeelingMeter, ExitTicket, LessonRecipe } from '@/components/remix/remix';
 
 export function getMDXComponents(components?: MDXComponents) {
   return {
@@ -62,6 +63,10 @@ export function getMDXComponents(components?: MDXComponents) {
     CostCalculator,
     CostTable,
     PromptBuilder,
+    WordPicker,
+    FeelingMeter,
+    ExitTicket,
+    LessonRecipe,
     ...components,
   } satisfies MDXComponents;
 }

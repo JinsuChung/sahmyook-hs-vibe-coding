@@ -2,6 +2,7 @@ export * from './prompt-types';
 import type { Prompt, PromptVar } from './prompt-types';
 import { promptsCommon } from './parts/prompts-common';
 import { promptsFlow } from './parts/prompts-flow';
+import { promptsRemix } from './parts/prompts-remix';
 import { promptsS1 } from './parts/prompts-s1';
 import { promptsS2 } from './parts/prompts-s2';
 import { promptsS3 } from './parts/prompts-s3';
@@ -23,6 +24,7 @@ export const prompts: Prompt[] = [
   ...promptsS8,
   ...promptsCommon,
   ...promptsFlow,
+  ...promptsRemix,
 ];
 
 export const getPrompt = (id: string) => prompts.find((p) => p.id === id);

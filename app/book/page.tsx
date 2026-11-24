@@ -41,6 +41,12 @@ const outline: Part[] = [
   },
   { id: 'p1', title: parts[1].title, desc: parts[1].desc, chapters: sessionChapters(1, 4) },
   { id: 'p2', title: parts[2].title, desc: parts[2].desc, chapters: sessionChapters(5, 8) },
+  {
+    id: 'p3',
+    title: '과정 이후',
+    desc: '이 저장소를 가져다 내 교과와 내 교수법의 수업 사이트로',
+    chapters: [{ id: 'c-remix', slug: ['remix'], eyebrow: '과정 이후' }],
+  },
 ];
 
 const appendix = [
@@ -120,6 +126,7 @@ export default function BookPage() {
             <li>시작하기 · 가입과 설치, 한번에 따라가는 흐름</li>
             <li>{parts[1].title} (1–4회차)</li>
             <li>{parts[2].title} (5–8회차)</li>
+            <li>과정 이후 · 내 수업 사이트 만들기</li>
             <li>부록 · 퀴즈 정답, 용어사전, 자주 묻는 질문</li>
           </ul>
           <div className="book-cover-foot">
